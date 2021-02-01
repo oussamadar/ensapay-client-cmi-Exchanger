@@ -11,23 +11,23 @@ package ensa.pay.cmiclientexchanger.soap.api.creancier;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for creanceInfo complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="creanceInfo"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="nameCreance" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="creancier" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="genericId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="codeCreance" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="endPoint" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,69 +37,67 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "creanceInfo", namespace = "http://app.com/creanciers-service", propOrder = {
-    "id",
-    "nameCreance",
-    "codeCreance",
-    "endPoint"
+@XmlType(name = "", propOrder = {
+    "creancier",
+    "genericId",
+    "codeCreance"
 })
-public class CreanceInfo {
+@XmlRootElement(name = "getBillsRequest")
+public class GetBillsRequest {
 
     @XmlElement(required = true)
-    protected String id;
+    protected String creancier;
     @XmlElement(required = true)
-    protected String nameCreance;
+    protected String genericId;
     @XmlElement(required = true)
     protected String codeCreance;
-    @XmlElement(required = true)
-    protected String endPoint;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the creancier property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
+    public String getCreancier() {
+        return creancier;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the creancier property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
+    public void setCreancier(String value) {
+        this.creancier = value;
     }
 
     /**
-     * Gets the value of the nameCreance property.
+     * Gets the value of the genericId property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNameCreance() {
-        return nameCreance;
+    public String getGenericId() {
+        return genericId;
     }
 
     /**
-     * Sets the value of the nameCreance property.
+     * Sets the value of the genericId property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNameCreance(String value) {
-        this.nameCreance = value;
+    public void setGenericId(String value) {
+        this.genericId = value;
     }
 
     /**
@@ -124,30 +122,6 @@ public class CreanceInfo {
      */
     public void setCodeCreance(String value) {
         this.codeCreance = value;
-    }
-
-    /**
-     * Gets the value of the endPoint property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEndPoint() {
-        return endPoint;
-    }
-
-    /**
-     * Sets the value of the endPoint property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEndPoint(String value) {
-        this.endPoint = value;
     }
 
 }

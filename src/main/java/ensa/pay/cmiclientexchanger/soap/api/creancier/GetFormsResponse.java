@@ -10,6 +10,7 @@ package ensa.pay.cmiclientexchanger.soap.api.creancier;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element name="form" type="{http://app.com/payments-service}formInfo"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "getListCreanciersRequest", namespace = "http://app.com/creanciers-service")
-public class GetListCreanciersRequest {
+@XmlType(name = "", propOrder = {
+    "form"
+})
+@XmlRootElement(name = "getFormsResponse")
+public class GetFormsResponse {
 
+    @XmlElement(required = true)
+    protected FormInfo form;
+
+    /**
+     * Gets the value of the form property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FormInfo }
+     *     
+     */
+    public FormInfo getForm() {
+        return form;
+    }
+
+    /**
+     * Sets the value of the form property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FormInfo }
+     *     
+     */
+    public void setForm(FormInfo value) {
+        this.form = value;
+    }
 
 }

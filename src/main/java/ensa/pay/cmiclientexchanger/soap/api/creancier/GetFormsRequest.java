@@ -11,23 +11,22 @@ package ensa.pay.cmiclientexchanger.soap.api.creancier;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for creanceInfo complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="creanceInfo"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="nameCreance" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="codeCreance" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="endPoint" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="creance" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,70 +36,17 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "creanceInfo", namespace = "http://app.com/creanciers-service", propOrder = {
-    "id",
-    "nameCreance",
+@XmlType(name = "", propOrder = {
     "codeCreance",
-    "endPoint"
+    "creance"
 })
-public class CreanceInfo {
+@XmlRootElement(name = "getFormsRequest")
+public class GetFormsRequest {
 
-    @XmlElement(required = true)
-    protected String id;
-    @XmlElement(required = true)
-    protected String nameCreance;
     @XmlElement(required = true)
     protected String codeCreance;
     @XmlElement(required = true)
-    protected String endPoint;
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the nameCreance property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNameCreance() {
-        return nameCreance;
-    }
-
-    /**
-     * Sets the value of the nameCreance property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNameCreance(String value) {
-        this.nameCreance = value;
-    }
+    protected String creance;
 
     /**
      * Gets the value of the codeCreance property.
@@ -127,27 +73,27 @@ public class CreanceInfo {
     }
 
     /**
-     * Gets the value of the endPoint property.
+     * Gets the value of the creance property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getEndPoint() {
-        return endPoint;
+    public String getCreance() {
+        return creance;
     }
 
     /**
-     * Sets the value of the endPoint property.
+     * Sets the value of the creance property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setEndPoint(String value) {
-        this.endPoint = value;
+    public void setCreance(String value) {
+        this.creance = value;
     }
 
 }

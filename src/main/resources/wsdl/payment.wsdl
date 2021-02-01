@@ -1,0 +1,149 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://app.com/payments-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.com/payments-service" targetNamespace="http://app.com/payments-service">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://app.com/payments-service">
+            <xsd:element name="getFormsRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="codeCreance" type="xsd:string"/>
+                        <xsd:element name="creance" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getFormsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="form" type="tns:formInfo"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="formInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long"/>
+                    <xsd:element name="label" type="xsd:string"/>
+                    <xsd:element name="codeCreance" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  bills management  -->
+            <xsd:element name="getBillsRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="creancier" type="xsd:string"/>
+                        <xsd:element name="genericId" type="xsd:string"/>
+                        <xsd:element name="codeCreance" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getBillsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="clientPaymntInfo" type="tns:clientPaymentInfo"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="clientPaymentInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long"/>
+                    <xsd:element name="idPayment" type="xsd:string"/>
+                    <xsd:element name="fixeNumber" type="xsd:string"/>
+                    <xsd:element name="phoneNumber" type="xsd:string"/>
+                    <xsd:element name="firstName" type="xsd:string"/>
+                    <xsd:element name="lastName" type="xsd:string"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="bills" nillable="true" type="tns:billInfo"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="billInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long"/>
+                    <xsd:element name="amount" type="xsd:double"/>
+                    <xsd:element name="billingDate" type="xsd:dateTime"/>
+                    <xsd:element name="payedDate" type="xsd:dateTime"/>
+                    <xsd:element name="payed" type="xsd:boolean"/>
+                    <xsd:element name="codeCreance" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  payment request  -->
+            <xsd:element name="paymentRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bill" type="tns:billInfo"/>
+                        <xsd:element name="accountID" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="paymentResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="response" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getFormsRequest">
+        <wsdl:part element="tns:getFormsRequest" name="getFormsRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getBillsResponse">
+        <wsdl:part element="tns:getBillsResponse" name="getBillsResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getFormsResponse">
+        <wsdl:part element="tns:getFormsResponse" name="getFormsResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="paymentRequest">
+        <wsdl:part element="tns:paymentRequest" name="paymentRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="paymentResponse">
+        <wsdl:part element="tns:paymentResponse" name="paymentResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getBillsRequest">
+        <wsdl:part element="tns:getBillsRequest" name="getBillsRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="PaymentsServicePort">
+        <wsdl:operation name="getForms">
+            <wsdl:input message="tns:getFormsRequest" name="getFormsRequest"> </wsdl:input>
+            <wsdl:output message="tns:getFormsResponse" name="getFormsResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBills">
+            <wsdl:input message="tns:getBillsRequest" name="getBillsRequest"> </wsdl:input>
+            <wsdl:output message="tns:getBillsResponse" name="getBillsResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payment">
+            <wsdl:input message="tns:paymentRequest" name="paymentRequest"> </wsdl:input>
+            <wsdl:output message="tns:paymentResponse" name="paymentResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PaymentsServicePortSoap11" type="tns:PaymentsServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getForms">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getFormsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getFormsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBills">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getBillsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getBillsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="payment">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="paymentRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="paymentResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PaymentsServicePortService">
+        <wsdl:port binding="tns:PaymentsServicePortSoap11" name="PaymentsServicePortSoap11">
+            <soap:address location="https://ensaspay-zuul-gateway.herokuapp.com:443/soapWS"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

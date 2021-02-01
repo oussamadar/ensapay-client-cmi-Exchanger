@@ -16,7 +16,7 @@ public class CreancierListController {
     @Autowired
     ListCreanceService listCreanceService;
 
-    @GetMapping("/listCreanciers")
+    @GetMapping("/all")
     public List<CreancierInfo> getListCreanciers(){
         GetListCreanciersRequest request = new GetListCreanciersRequest();
         return  listCreanceService.
