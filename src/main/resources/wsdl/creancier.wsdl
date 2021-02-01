@@ -1,0 +1,64 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://app.com/creanciers-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://app.com/creanciers-service" targetNamespace="http://app.com/creanciers-service">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://app.com/creanciers-service">
+            <xsd:element name="getListCreanciersRequest">
+                <xsd:complexType>
+                    <xsd:sequence> </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getListCreanciersResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="listCreanciers" nillable="true" type="tns:creancierInfo"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="creancierInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:string"/>
+                    <xsd:element name="nameCreancier" type="xsd:string"/>
+                    <xsd:element name="codeCreancier" type="xsd:string"/>
+                    <xsd:element name="categoryCreancier" type="xsd:string"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="listCreances" nillable="true" type="tns:creanceInfo"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="creanceInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:string"/>
+                    <xsd:element name="nameCreance" type="xsd:string"/>
+                    <xsd:element name="codeCreance" type="xsd:string"/>
+                    <xsd:element name="endPoint" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getListCreanciersResponse">
+        <wsdl:part element="tns:getListCreanciersResponse" name="getListCreanciersResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getListCreanciersRequest">
+        <wsdl:part element="tns:getListCreanciersRequest" name="getListCreanciersRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CreanciersServicePort">
+        <wsdl:operation name="getListCreanciers">
+            <wsdl:input message="tns:getListCreanciersRequest" name="getListCreanciersRequest"> </wsdl:input>
+            <wsdl:output message="tns:getListCreanciersResponse" name="getListCreanciersResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CreanciersServicePortSoap11" type="tns:CreanciersServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getListCreanciers">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getListCreanciersRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getListCreanciersResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CreanciersServicePortService">
+        <wsdl:port binding="tns:CreanciersServicePortSoap11" name="CreanciersServicePortSoap11">
+            <soap:address location="https://ensaspay-zuul-gateway.herokuapp.com:443/soapWS"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
